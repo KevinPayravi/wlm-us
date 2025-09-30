@@ -1,0 +1,665 @@
+/* ===========================
+   RESET AND BASE STYLES
+   =========================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ccc;
+  font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+/* ===========================
+   TYPOGRAPHY
+   =========================== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  max-width: 70ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===========================
+   LISTS
+   =========================== */
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  list-style-type: none;
+}
+
+/* ===========================
+   LINKS
+   =========================== */
+a {
+  color: #990000;
+  transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+  color: #b22222;
+}
+
+a:focus {
+  outline: 2px solid #990000;
+  outline-offset: 2px;
+}
+
+/* ===========================
+   BUTTONS
+   =========================== */
+.button {
+  appearance: button;
+  background-color: #b22222;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  display: inline-block;
+  font-size: 1.1em;
+  font-weight: 600;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 16px 0;
+}
+
+.button:hover {
+  background-color: #9e0101;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(178, 34, 34, 0.3);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:focus {
+  outline: 2px solid #990000;
+  outline-offset: 2px;
+}
+
+/* ===========================
+   FORM ELEMENTS
+   =========================== */
+select,
+input[type="text"] {
+  border: 2px solid #dee2e6;
+  border-radius: 6px;
+  font-size: 1em;
+  margin: 8px 0;
+  padding: 10px 12px;
+  width: 100%;
+  max-width: 400px;
+  transition: all 0.3s ease;
+  background: white;
+  font-family: inherit;
+}
+
+select:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: #990000;
+  box-shadow: 0 0 0 3px rgba(153, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+input[type="radio"] {
+  height: 20px;
+  width: 20px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+label,
+.form-label {
+  font-size: 1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
+  font-weight: 500;
+  color: #495057;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+/* ===========================
+   LAYOUT COMPONENTS
+   =========================== */
+.content {
+  margin: 2em auto;
+  padding: 0 0 1em 0;
+  max-width: 1200px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  background-color: #990000;
+  color: #fff;
+  padding: 12px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.header img {
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+footer.center-text {
+  margin: 40px 0;
+  padding: 20px;
+  font-size: 0.9em;
+}
+
+/* ===========================
+   FORMS
+   =========================== */
+.form {
+  margin: 20px auto;
+  padding: 25px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  max-width: 500px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.form:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.upload-form {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.form-section {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e9ecef;
+}
+
+.form-section h3 {
+  color: #990000;
+  font-size: 1.2em;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.form-section h2 {
+  color: #990000;
+  margin-bottom: 16px;
+  font-size: 1.4em;
+}
+
+.form-section>p {
+  font-size: 1em;
+  margin-bottom: 16px;
+}
+
+.dropdown-section {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px 0;
+  border: 1px solid #dee2e6;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.location-options,
+.subject-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.tags-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+
+/* Shared styling for radio buttons and checkboxes */
+.radio-option,
+.tag-option {
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
+  border-radius: 18px;
+  border: 2px solid #dee2e6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.radio-option:hover,
+.tag-option:hover {
+  background: #e9ecef;
+  border-color: #990000;
+}
+
+.radio-option.selected,
+.tag-option.selected {
+  background: #990000;
+  color: white;
+  border-color: #990000;
+}
+
+.radio-option {
+  padding: 8px 14px;
+  min-width: 110px;
+  justify-content: center;
+}
+
+.radio-option input[type="radio"] {
+  margin: 0 6px 0 0;
+  width: 14px;
+  height: 14px;
+}
+
+.tag-option {
+  padding: 10px 16px;
+  justify-content: flex-start;
+}
+
+.tag-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(153, 0, 0, 0.15);
+}
+
+.tag-option input[type="checkbox"] {
+  margin: 0 10px 0 0;
+  width: 16px;
+  height: 16px;
+  accent-color: #990000;
+  cursor: pointer;
+}
+
+.tag-option.selected input[type="checkbox"] {
+  accent-color: white;
+}
+
+/* ===========================
+   OTHER COMPONENTS
+   =========================== */
+.quick-reminders {
+  background: #e7f3ff;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 12px 0;
+  border-left: 3px solid #0066cc;
+}
+
+.quick-reminders-title {
+  font-size: 0.95em;
+}
+
+.quick-reminders-list {
+  margin: 6px 0 0 0;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 0.9em;
+}
+
+.quick-reminders-list-item {
+  margin-bottom: 4px;
+}
+
+.copyright-warning {
+  margin: 12px auto;
+  padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid #dc3545;
+  max-width: 600px;
+  width: fit-content;
+  display: none;
+}
+
+.warning-content {
+  background: #f8f9fa;
+  color: #495057;
+  padding: 12px;
+  position: relative;
+}
+
+.warning-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #dc3545;
+}
+
+.warning-content h4 {
+  margin: 0 0 8px 0;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.warning-content p {
+  margin: 6px 0;
+  line-height: 1.3;
+  font-size: 0.9em;
+}
+
+.warning-content strong {
+  color: #990000;
+}
+
+.date-banner {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.upload-button-wrapper {
+  text-align: center;
+  margin: 16px 0;
+}
+
+/* ===========================
+   TEXT STYLES
+   =========================== */
+.form-intro-text {
+  font-size: 1em;
+  margin-bottom: 16px;
+}
+
+.nrhp-description,
+.subject-description,
+.tags-description {
+  color: #6c757d;
+  margin-bottom: 12px;
+  font-size: 0.95em;
+}
+
+.tribe-note,
+.nrhp-note,
+.copyright-warning-text {
+  font-size: 0.85em;
+  color: #6c757d;
+  margin-top: 8px;
+}
+
+.proceed-note {
+  color: #28a745;
+  font-weight: 600;
+}
+
+/* ===========================
+   CARD COMPONENTS
+   =========================== */
+.cards {
+  margin: 40px auto;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  padding: 0 20px;
+}
+
+.card {
+  padding: 1.5rem;
+  color: #990000;
+  font-weight: 500;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.card-caption {
+  display: block;
+  margin: 15px 0 10px 0;
+}
+
+.card-caption a {
+  font-size: 1.3em;
+  text-decoration: none;
+  color: #990000;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.card-caption a:hover {
+  color: #b22222;
+  text-decoration: underline;
+}
+
+.card-attribution {
+  font-size: 0.85em;
+  font-style: italic;
+  color: #696969;
+  line-height: 1.4;
+}
+
+.card-attribution a {
+  color: #696969;
+  text-decoration: none;
+}
+
+.card-attribution a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   UTILITY CLASSES
+   =========================== */
+.center-text {
+  text-align: center;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ccc;
+  margin: 2rem 0;
+}
+
+/* ===========================
+   PAGE-SPECIFIC STYLES
+   =========================== */
+#stateSelect,
+#territorySelect,
+#tribeSelect,
+#otherSelect,
+#uploadButton {
+  display: none;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+
+@media (min-width: 1200px) {
+  .upload-form {
+    max-width: 1100px;
+  }
+
+  .location-options {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .subject-options,
+  .tags-section {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .content {
+    margin: 8px;
+  }
+
+  .location-options,
+  .subject-options,
+  .tags-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.4em;
+  }
+
+  .content {
+    margin: 5px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    padding: 0;
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+
+  select,
+  input[type="text"] {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .upload-form {
+    padding: 0 8px;
+  }
+
+  .form-section {
+    padding: 15px 12px;
+    margin: 10px 0;
+  }
+
+  .radio-group {
+    gap: 10px;
+  }
+
+  .location-options,
+  .tags-section,
+  .subject-options {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .radio-option {
+    min-width: auto;
+    justify-content: flex-start;
+    padding: 8px 14px;
+  }
+
+  .tag-option {
+    justify-content: flex-start;
+    padding: 10px 16px;
+  }
+
+  .warning-content {
+    padding: 12px;
+  }
+
+  .warning-content h4 {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.2em;
+  }
+
+  .button {
+    font-size: 1.1em;
+    padding: 12px 20px;
+  }
+}
