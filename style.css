@@ -209,10 +209,6 @@ footer.center-text {
   transition: all 0.3s ease;
 }
 
-.form:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-}
-
 .upload-form {
   max-width: 1000px;
   margin: 0 auto;
@@ -221,18 +217,24 @@ footer.center-text {
 
 .form-section {
   background: white;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 12px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border: 1px solid #e9ecef;
+  border-top: 3px solid #990000;
 }
 
 .form-section h3 {
   color: #990000;
-  font-size: 1.2em;
-  margin-bottom: 12px;
-  font-weight: 600;
+  font-size: 1.3em;
+  margin: 0 0 16px 0;
+  font-weight: 700;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #f8f9fa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .form-section h2 {
@@ -249,32 +251,33 @@ footer.center-text {
 .dropdown-section {
   background: #f8f9fa;
   border-radius: 8px;
-  padding: 12px;
-  margin: 12px 0;
+  padding: 16px;
+  margin: 16px 0;
   border: 1px solid #dee2e6;
+  transition: all 0.3s ease;
 }
 
 .radio-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
   justify-content: center;
-  margin: 12px 0;
+  margin: 20px 0;
 }
 
 .location-options,
 .subject-options {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 10px;
-  margin: 12px 0;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
 }
 
 .tags-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 10px;
-  margin: 12px 0;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
 }
 
 /* Shared styling for radio buttons and checkboxes */
@@ -305,8 +308,8 @@ footer.center-text {
 }
 
 .radio-option {
-  padding: 8px 14px;
-  min-width: 110px;
+  padding: .5em 1em;
+  min-width: 120px;
   justify-content: center;
 }
 
@@ -317,13 +320,9 @@ footer.center-text {
 }
 
 .tag-option {
-  padding: 10px 16px;
+  padding: 10px 14px;
   justify-content: flex-start;
-}
-
-.tag-option:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(153, 0, 0, 0.15);
+  min-height: 44px;
 }
 
 .tag-option input[type="checkbox"] {
@@ -368,15 +367,26 @@ footer.center-text {
 }
 
 .copyright-warning {
-  margin: 12px auto;
+  margin: 20px auto;
   padding: 0;
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   border: 2px solid #dc3545;
-  max-width: 600px;
+  max-width: 700px;
   width: fit-content;
   display: none;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .warning-content {
@@ -426,7 +436,10 @@ footer.center-text {
 
 .upload-button-wrapper {
   text-align: center;
-  margin: 16px 0;
+  margin: 32px 0;
+  padding: 24px;
+  background: #f8f9fa;
+  border-radius: 12px;
 }
 
 /* ===========================
@@ -441,8 +454,9 @@ footer.center-text {
 .subject-description,
 .tags-description {
   color: #6c757d;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   font-size: 0.95em;
+  line-height: 1.5;
 }
 
 .tribe-note,
@@ -623,8 +637,13 @@ hr {
   }
 
   .form-section {
-    padding: 15px 12px;
-    margin: 10px 0;
+    padding: 18px 16px;
+    margin: 16px 0;
+  }
+
+  .form-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 12px;
   }
 
   .radio-group {
@@ -641,12 +660,19 @@ hr {
   .radio-option {
     min-width: auto;
     justify-content: flex-start;
-    padding: 8px 14px;
+    padding: 10px 16px;
+    min-height: 44px;
   }
 
   .tag-option {
     justify-content: flex-start;
-    padding: 10px 16px;
+    padding: 10px 14px;
+    min-height: 40px;
+  }
+
+  .upload-button-wrapper {
+    margin: 24px 0;
+    padding: 20px 16px;
   }
 
   .warning-content {
