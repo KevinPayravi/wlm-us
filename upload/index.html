@@ -92,6 +92,7 @@
         <div id="stateSelect" class="dropdown-section">
           <label class="form-label" for="selectState">Select the state:</label>
           <select id="selectState" aria-label="Select state">
+            <option value="">-- Select a state --</option>
             <option value="Alabama">Alabama</option>
             <option value="Alaska">Alaska</option>
             <option value="Arizona">Arizona</option>
@@ -148,6 +149,7 @@
         <div id="territorySelect" class="dropdown-section">
           <label class="form-label" for="selectTerritory">Select the territory / district:</label>
           <select id="selectTerritory" aria-label="Select territory or district">
+            <option value="">-- Select a territory/district --</option>
             <option value="Guam">Guam</option>
             <option value="the_Northern_Mariana_Islands">Northern Mariana Islands</option>
             <option value="Puerto_Rico">Puerto Rico</option>
@@ -287,11 +289,15 @@
           if (document.getElementById("location-state").checked) {
             const selectedOption = document.getElementById("selectState");
             const selectedValue = selectedOption.options[selectedOption.selectedIndex].value;
-            return 'Images_from_Wiki_Loves_Monuments_2025_in_' + selectedValue;
+            if (selectedValue) {
+              return 'Images_from_Wiki_Loves_Monuments_2025_in_' + selectedValue;
+            }
           } else if (document.getElementById("location-territory").checked) {
             const selectedOption = document.getElementById("selectTerritory");
             const selectedValue = selectedOption.options[selectedOption.selectedIndex].value;
-            return 'Images_from_Wiki_Loves_Monuments_2025_in_' + selectedValue;
+            if (selectedValue) {
+              return 'Images_from_Wiki_Loves_Monuments_2025_in_' + selectedValue;
+            }
           } else if (document.getElementById("location-tribal").checked) {
             return 'Images_from_Wiki_Loves_Monuments_2025_in_Native_American_nations';
           }
@@ -334,6 +340,42 @@
           return selectedTags;
         }
 
+        // Check if form has valid selections
+        function isFormValid() {
+          // Check if a location type is selected
+          const locationSelected = document.querySelector('input[name="location"]:checked');
+          if (!locationSelected) return false;
+
+          // If state is selected, check for state value
+          if (locationSelected.value === 'state') {
+            const stateValue = document.getElementById("selectState").value;
+            return stateValue !== '';
+          }
+
+          // If territory is selected, check for territory value
+          if (locationSelected.value === 'territory') {
+            const territoryValue = document.getElementById("selectTerritory").value;
+            return territoryValue !== '';
+          }
+
+          // For tribal and other, they're always valid once selected
+          return true;
+        }
+
+        // Update upload button state
+        function updateUploadButtonState() {
+          const uploadButton = document.getElementById("uploadButton");
+          const fillFormText = document.getElementById("fillFormText");
+          
+          if (isFormValid()) {
+            uploadButton.style.display = "inline-block";
+            fillFormText.style.display = "none";
+          } else {
+            uploadButton.style.display = "none";
+            fillFormText.style.display = "inline";
+          }
+        }
+
         // Update categories array and log current state
         function updateCategories() {
           currentCategories = [];
@@ -353,6 +395,9 @@
           // Add tag categories
           const tagCategories = buildTagCategories();
           currentCategories.push(...tagCategories);
+
+          // Update upload button state
+          updateUploadButtonState();
 
           // Log current categories for debugging
           console.log('Updated categories:', currentCategories);
@@ -471,8 +516,6 @@
           elTribes.style.display = "none";
           elOther.style.display = "none";
 
-          document.getElementById("uploadButton").style.display = "inline-block";
-          document.getElementById("fillFormText").style.display = "none";
           updateCategories();
         }
         
@@ -487,8 +530,6 @@
           elTribes.style.display = "none";
           elOther.style.display = "none";
 
-          document.getElementById("uploadButton").style.display = "inline-block";
-          document.getElementById("fillFormText").style.display = "none";
           updateCategories();
         }
 
@@ -503,8 +544,6 @@
           elTribes.style.display = "block";
           elOther.style.display = "none";
 
-          document.getElementById("uploadButton").style.display = "inline-block";
-          document.getElementById("fillFormText").style.display = "none";
           updateCategories();
         }
 
@@ -519,8 +558,6 @@
           elTribes.style.display = "none";
           elOther.style.display = "block";
 
-          document.getElementById("uploadButton").style.display = "inline-block";
-          document.getElementById("fillFormText").style.display = "none";
           updateCategories();
         }
 
@@ -563,7 +600,7 @@
   <footer class="center-text">
     <p>Portal maintained by <a href="https://commons.wikimedia.org/wiki/User:Kevin_Payravi">Kevin Payravi</a> for <a
         href="https://commons.wikimedia.org/wiki/Commons:Wiki_Loves_Monuments_2025_in_the_United_States">Wiki Loves
-        Monuments in the U.S.</a></p>
+        Monuments in the U.S.</a> (<a href="https://gitlab.wikimedia.org/kevinpayravi/wlm-us/">Source Code</a>)</p>
     <p>Please report issues to the <a
         href="https://commons.wikimedia.org/wiki/Commons_talk:Wiki_Loves_Monuments_2025_in_the_United_States">WLM-US
         talk page</a></p>

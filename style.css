@@ -119,14 +119,6 @@ input[type="text"] {
   font-family: inherit;
 }
 
-select:focus,
-input[type="text"]:focus {
-  outline: none;
-  border-color: #990000;
-  box-shadow: 0 0 0 3px rgba(153, 0, 0, 0.15);
-  transform: translateY(-1px);
-}
-
 input[type="radio"] {
   height: 20px;
   width: 20px;
@@ -190,7 +182,6 @@ label,
 }
 
 footer.center-text {
-  margin: 40px 0;
   padding: 20px;
   font-size: 0.9em;
 }
@@ -436,7 +427,6 @@ footer.center-text {
 
 .upload-button-wrapper {
   text-align: center;
-  margin: 32px 0;
   padding: 24px;
   background: #f8f9fa;
   border-radius: 12px;
@@ -671,7 +661,6 @@ hr {
   }
 
   .upload-button-wrapper {
-    margin: 24px 0;
     padding: 20px 16px;
   }
 
