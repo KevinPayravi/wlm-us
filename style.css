@@ -30,7 +30,7 @@ h6 {
 
 p {
   margin-bottom: 1rem;
-  max-width: 70ch;
+  max-width: 100ch;
   margin-left: auto;
   margin-right: auto;
 }
@@ -150,6 +150,10 @@ label,
   margin-bottom: 6px;
   font-weight: 600;
   font-size: 0.95em;
+}
+
+.form-note {
+  font-size: .8em;
 }
 
 /* ===========================
@@ -341,8 +345,9 @@ footer.center-text {
   background: #e7f3ff;
   padding: 10px;
   border-radius: 6px;
-  margin: 12px 0;
+  margin: 0 auto;
   border-left: 3px solid #0066cc;
+  max-width: 100ch;
 }
 
 .quick-reminders-title {

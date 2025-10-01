@@ -51,6 +51,10 @@
           Please use this portal to properly tag and upload
           each of your photos of historic sites in the U.S.
         </p>
+ 
+        <!-- <div class="form-note">
+          <p><strong>Note:</strong> You are not required to use this form to submit, and can go straight to the <a target="_blank" href="https://commons.wikimedia.org/wiki/Special:UploadWizard?campaign=wlm-us">Upload Wizard</a> or manually add <code>{{Wiki Loves Monuments 2025|us}}</code> to your photos. However, this form helps us better categorize images and makes your photos easier to find.</p>
+        </div> -->
 
         <div class="quick-reminders">
           <strong class="quick-reminders-title">Quick Reminders:</strong>
@@ -204,6 +208,18 @@
             <input type="radio" id="subject-marker" name="subject" value="marker">
             📍 Historic Marker / Plaque
           </label>
+          <label class="radio-option" for="subject-cemetery">
+            <input type="radio" id="subject-cemetery" name="subject" value="cemetery">
+            ⚱️ Cemetery
+          </label>
+          <label class="radio-option" for="subject-transportation">
+            <input type="radio" id="subject-transportation" name="subject" value="transportation">
+            🚂 Transportation (rail cars, ships, etc.)
+          </label>
+          <label class="radio-option" for="subject-infrastructure">
+            <input type="radio" id="subject-infrastructure" name="subject" value="infrastructure">
+            🌉 Infrastructure (bridges, roads, dams, etc.)
+          </label>
           <label class="radio-option" for="subject-artwork">
             <input type="radio" id="subject-artwork" name="subject" value="artwork">
             🎨 Artwork / Mural
@@ -242,21 +258,21 @@
         <div class="tags-section">
           <label class="tag-option" for="tag-uav" onclick="toggleTag(this)">
             <input type="checkbox" id="tag-uav" name="tags" value="UAV">
-            UAV (Drone) Photo
+            UAV (Drone) photo
           </label>
           <label class="tag-option" for="tag-native" onclick="toggleTag(this)">
             <input type="checkbox" id="tag-native" name="tags" value="Native_American_sites">
-            Native American Site
+            Native American site
           </label>
           <label class="tag-option" for="tag-unphotographed" onclick="toggleTag(this)">
             <input type="checkbox" id="tag-unphotographed" name="tags" value="Previously_unphotographed_sites">
-            Previously Unphotographed on Commons
+            Previously unphotographed on Commons
           </label>
         </div>
       </div>
 
       <div class="upload-button-wrapper">
-        Fill out the above form to enable the upload button.<br />
+        <span id="fillFormText">Fill out the above form to enable the upload button.</span>
         <a id="uploadButton" class="button" role="button" onClick="upload()">
           🚀 Start Upload Process
         </a>
@@ -292,6 +308,9 @@
               'marker': 'Markers_from_Wiki_Loves_Monuments_2025_in_the_United_States',
               'artwork': 'Artwork_from_Wiki_Loves_Monuments_2025_in_the_United_States',
               'landscape': 'Landscapes_from_Wiki_Loves_Monuments_2025_in_the_United_States',
+              'cemetery': 'Cemeteries_from_Wiki_Loves_Monuments_2025_in_the_United_States',
+              'transportation': 'Transportation_from_Wiki_Loves_Monuments_2025_in_the_United_States',
+              'infrastructure': 'Infrastructure_from_Wiki_Loves_Monuments_2025_in_the_United_States',
               'other': 'Other_subjects_from_Wiki_Loves_Monuments_2025_in_the_United_States'
             };
             return subjectMap[subjectValue] || null;
@@ -453,6 +472,7 @@
           elOther.style.display = "none";
 
           document.getElementById("uploadButton").style.display = "inline-block";
+          document.getElementById("fillFormText").style.display = "none";
           updateCategories();
         }
         
@@ -468,6 +488,7 @@
           elOther.style.display = "none";
 
           document.getElementById("uploadButton").style.display = "inline-block";
+          document.getElementById("fillFormText").style.display = "none";
           updateCategories();
         }
 
@@ -483,6 +504,7 @@
           elOther.style.display = "none";
 
           document.getElementById("uploadButton").style.display = "inline-block";
+          document.getElementById("fillFormText").style.display = "none";
           updateCategories();
         }
 
@@ -498,6 +520,7 @@
           elOther.style.display = "block";
 
           document.getElementById("uploadButton").style.display = "inline-block";
+          document.getElementById("fillFormText").style.display = "none";
           updateCategories();
         }
 
