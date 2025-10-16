@@ -340,6 +340,15 @@
           return selectedTags;
         }
 
+        function buildDateCategory() {
+          const now = new Date();
+          const year = now.getUTCFullYear();
+          const month = String(now.getUTCMonth() + 1).padStart(2, '0');
+          const day = String(now.getUTCDate()).padStart(2, '0');
+          const dateString = `${year}-${month}-${day}`;
+          return `Images_from_Wiki_Loves_Monuments_2025_in_the_United_States_uploaded_on_${dateString}`;
+        }
+
         // Check if form has valid selections
         function isFormValid() {
           // Check if a location type is selected
@@ -395,6 +404,10 @@
           // Add tag categories
           const tagCategories = buildTagCategories();
           currentCategories.push(...tagCategories);
+
+          // Add date category
+          const dateCategory = buildDateCategory();
+          currentCategories.push(dateCategory);
 
           // Update upload button state
           updateUploadButtonState();
