@@ -18,10 +18,14 @@
       const now = new Date();
 
       let bannerText = null;
+      let isContestActive = true;
+
       if (now < startDate) {
-        bannerText = 'The upload period for Wiki Loves Monuments 2025 in the US has not started yet. Check back in October!';
+        bannerText = 'The upload period for Wiki Loves Monuments in the US has not started yet. Check back in October!';
+        isContestActive = false;
       } else if (now >= endDate) {
-        bannerText = 'The upload period for Wiki Loves Monuments 2025 in the US has ended. Thank you for your contributions!';
+        bannerText = 'The upload period for Wiki Loves Monuments in the US has ended. Thank you for your contributions!';
+        isContestActive = false;
       }
 
       if (bannerText) {
@@ -30,6 +34,27 @@
         banner.textContent = bannerText;
 
         document.body.insertBefore(banner, document.body.firstChild);
+      }
+
+      // Disable form if contest is not active
+      if (!isContestActive) {
+        const formElements = document.querySelectorAll('input, select, button, .button');
+        formElements.forEach(element => {
+          element.disabled = true;
+          if (element.classList.contains('button')) {
+            element.style.opacity = '0.5';
+            element.style.cursor = 'not-allowed';
+            element.onclick = null;
+          }
+        });
+
+        // Disable onclick handlers for radio and checkbox labels
+        const labelElements = document.querySelectorAll('.radio-option, .tag-option');
+        labelElements.forEach(label => {
+          label.style.opacity = '0.5';
+          label.style.cursor = 'not-allowed';
+          label.onclick = null;
+        });
       }
     });
   </script>
