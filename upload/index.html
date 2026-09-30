@@ -9,6 +9,7 @@
   <link rel="shortcut icon"
     href="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Wiki_Loves_Monuments_Logo_notext.svg/250px-Wiki_Loves_Monuments_Logo_notext.svg.png">
   <link rel="stylesheet" type="text/css" href="../style.css">
+  <script src="nations.js"></script>
   <script>
     let isContestClosed = false;
 
@@ -189,10 +190,12 @@
         </div>
         <div id="tribeSelect" class="dropdown-section">
           <label class="form-label" for="selectTribe">Enter the Native American nation name:</label>
-          <input type="text" id="selectTribe" name="selectTribe" aria-label="Enter tribe name"
+          <input type="text" id="selectTribe" name="selectTribe" list="nationList" autocomplete="off"
             placeholder="e.g., Cherokee Nation">
+          <datalist id="nationList"></datalist>
           <p class="tribe-note">
-            <em>This will be included in your photo's description.</em>
+            <em>Start typing to see suggestions. Federally recognized nations are listed, but you can enter any
+              name. This will be included in your photo's description.</em>
           </p>
         </div>
         <div id="otherSelect" class="dropdown-section">
@@ -501,6 +504,13 @@
           document.getElementById('selectState').addEventListener('change', updateCategories);
           document.getElementById('selectTerritory').addEventListener('change', updateCategories);
           document.getElementById('selectTribe').addEventListener('input', updateCategories);
+
+          const nationList = document.getElementById('nationList');
+          NATIONS.forEach(name => {
+            const option = document.createElement('option');
+            option.value = name;
+            nationList.appendChild(option);
+          });
         });
 
         window.addEventListener('pageshow', restoreFromInputs);
