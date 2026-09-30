@@ -7,9 +7,11 @@
   <title>Wiki Loves Monuments in the United States - Upload</title>
   <meta name="description" content="Upload a media file for Wiki Loves Monuments in the United States.">
   <link rel="shortcut icon"
-    href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Wiki_Loves_Monuments_Logo_notext.svg/264px-Wiki_Loves_Monuments_Logo_notext.svg.png">
+    href="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Wiki_Loves_Monuments_Logo_notext.svg/250px-Wiki_Loves_Monuments_Logo_notext.svg.png">
   <link rel="stylesheet" type="text/css" href="../style.css">
   <script>
+    let isContestClosed = false;
+
     document.addEventListener('DOMContentLoaded', function () {
       // Upload period start: Oct 1, 2026 00:00 US Eastern Time (EDT, UTC-4)
       const startDate = new Date('2026-10-01T00:00:00-04:00');
@@ -21,7 +23,7 @@
       let isContestActive = true;
 
       if (now < startDate) {
-        bannerText = 'The upload period for Wiki Loves Monuments in the US has not started yet. Check back in October!';
+        bannerText = 'The upload period for Wiki Loves Monuments in the US opens on October 1, 2026. Check back then!';
         isContestActive = false;
       } else if (now >= endDate) {
         bannerText = 'The upload period for Wiki Loves Monuments in the US has ended. Thank you for your contributions!';
@@ -38,6 +40,9 @@
 
       // Disable form if contest is not active
       if (!isContestActive) {
+        isContestClosed = true;
+        document.getElementById('fillFormText').style.display = 'none';
+
         const formElements = document.querySelectorAll('input, select, button, .button');
         formElements.forEach(element => {
           element.disabled = true;
@@ -64,7 +69,7 @@
   <main class="content center-text">
     <header class="header">
       <img
-        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/WLM_Logo_negative.svg/240px-WLM_Logo_negative.svg.png"
+        src="https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/WLM_Logo_negative.svg/250px-WLM_Logo_negative.svg.png"
         alt="Wiki Loves Monuments Logo" width="75" height="75">
       <h1 class="title">Wiki Loves Monuments in the U.S. 2026 Upload Form</h1>
     </header>
@@ -168,7 +173,6 @@
             <option value="West_Virginia">West Virginia</option>
             <option value="Wisconsin">Wisconsin</option>
             <option value="Wyoming">Wyoming</option>
-            <option value="Guam">Guam</option>
           </select>
         </div>
         <div id="territorySelect" class="dropdown-section">
@@ -299,10 +303,10 @@
       </div>
 
       <div class="upload-button-wrapper">
-        <span id="fillFormText">Fill out the above form to enable the upload button.</span>
-        <a id="uploadButton" class="button" role="button" onClick="upload()">
+        <span id="fillFormText">Choose where the site is located to enable the upload button.</span>
+        <button type="button" id="uploadButton" class="button" onClick="upload()">
           🚀 Start Upload Process
-        </a>
+        </button>
       </div>
 
       <script>
@@ -374,39 +378,41 @@
           return `Images_from_Wiki_Loves_Monuments_2026_in_the_United_States_uploaded_on_${dateString}`;
         }
 
-        // Check if form has valid selections
-        function isFormValid() {
+        // Returns what  user still needs to fill in, or null if form is valid
+        function getMissingStep() {
           // Check if a location type is selected
           const locationSelected = document.querySelector('input[name="location"]:checked');
-          if (!locationSelected) return false;
+          if (!locationSelected) return 'Choose where the site is located to enable the upload button.';
 
           // If state is selected, check for state value
-          if (locationSelected.value === 'state') {
-            const stateValue = document.getElementById("selectState").value;
-            return stateValue !== '';
+          if (locationSelected.value === 'state' && document.getElementById("selectState").value === '') {
+            return 'Select a state to enable the upload button.';
           }
 
           // If territory is selected, check for territory value
-          if (locationSelected.value === 'territory') {
-            const territoryValue = document.getElementById("selectTerritory").value;
-            return territoryValue !== '';
+          if (locationSelected.value === 'territory' && document.getElementById("selectTerritory").value === '') {
+            return 'Select a territory or district to enable the upload button.';
           }
 
           // For tribal and other, they're always valid once selected
-          return true;
+          return null;
         }
 
         // Update upload button state
         function updateUploadButtonState() {
+          if (isContestClosed) return;
+
           const uploadButton = document.getElementById("uploadButton");
           const fillFormText = document.getElementById("fillFormText");
-          
-          if (isFormValid()) {
+          const missingStep = getMissingStep();
+
+          if (missingStep) {
+            uploadButton.style.display = "none";
+            fillFormText.textContent = missingStep;
+            fillFormText.style.display = "inline";
+          } else {
             uploadButton.style.display = "inline-block";
             fillFormText.style.display = "none";
-          } else {
-            uploadButton.style.display = "none";
-            fillFormText.style.display = "inline";
           }
         }
 
@@ -444,6 +450,8 @@
 
         // Unified radio button selection handler
         function handleRadioSelection(event) {
+          if (isContestClosed) return;
+
           const clickedLabel = event.target.closest('label.radio-option');
           if (!clickedLabel) return;
 
@@ -495,6 +503,29 @@
           document.getElementById('selectTribe').addEventListener('input', updateCategories);
         });
 
+        window.addEventListener('pageshow', restoreFromInputs);
+
+        function restoreFromInputs() {
+          document.querySelectorAll('label.radio-option, label.tag-option').forEach(label => {
+            label.classList.toggle('selected', label.querySelector('input').checked);
+          });
+
+          const location = document.querySelector('input[name="location"]:checked');
+          if (location) {
+            if (location.value === 'state') showStates();
+            else if (location.value === 'territory') showTerritories();
+            else if (location.value === 'tribal') showTribes();
+            else if (location.value === 'other') showOther();
+          }
+
+          const subject = document.querySelector('input[name="subject"]:checked');
+          if (subject) {
+            showCopyrightWarning(subject.value, false);
+          }
+
+          updateCategories();
+        }
+
         // Handle tag selection
         function toggleTag(tagOption) {
           const checkbox = tagOption.querySelector('input[type="checkbox"]');
@@ -509,7 +540,7 @@
           updateCategories();
         }
 
-        function showCopyrightWarning(subjectType) {
+        function showCopyrightWarning(subjectType, scrollToWarning = true) {
           const warningDiv = document.getElementById('copyrightWarning');
           const warningText = document.getElementById('warningText');
 
@@ -537,7 +568,9 @@
           if (warnings[subjectType]) {
             warningText.innerHTML = warnings[subjectType];
             warningDiv.style.display = 'block';
-            warningDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (scrollToWarning) {
+              warningDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
           } else {
             warningDiv.style.display = 'none';
           }
