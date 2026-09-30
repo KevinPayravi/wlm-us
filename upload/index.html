@@ -11,10 +11,10 @@
   <link rel="stylesheet" type="text/css" href="../style.css">
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // Upload period start: Oct 1, 2025 00:00 US Eastern Time (EDT, UTC-4)
-      const startDate = new Date('2025-10-01T00:00:00-04:00');
-      // Upload period end: Nov 1, 2025 00:00 Hawaii Standard Time (UTC-10)
-      const endDate = new Date('2025-11-01T00:00:00-10:00');
+      // Upload period start: Oct 1, 2026 00:00 US Eastern Time (EDT, UTC-4)
+      const startDate = new Date('2026-10-01T00:00:00-04:00');
+      // Upload period end: Nov 1, 2026 00:00 Hawaii Standard Time (UTC-10)
+      const endDate = new Date('2026-11-01T00:00:00-10:00');
       const now = new Date();
 
       let bannerText = null;
@@ -66,7 +66,7 @@
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/WLM_Logo_negative.svg/240px-WLM_Logo_negative.svg.png"
         alt="Wiki Loves Monuments Logo" width="75" height="75">
-      <h1 class="title">Wiki Loves Monuments in the U.S. 2025 Upload Form</h1>
+      <h1 class="title">Wiki Loves Monuments in the U.S. 2026 Upload Form</h1>
     </header>
 
     <div class="upload-form">
@@ -78,7 +78,7 @@
         </p>
  
         <!-- <div class="form-note">
-          <p><strong>Note:</strong> You are not required to use this form to submit, and can go straight to the <a target="_blank" href="https://commons.wikimedia.org/wiki/Special:UploadWizard?campaign=wlm-us">Upload Wizard</a> or manually add <code>{{Wiki Loves Monuments 2025|us}}</code> to your photos. However, this form helps us better categorize images and makes your photos easier to find.</p>
+          <p><strong>Note:</strong> You are not required to use this form to submit, and can go straight to the <a target="_blank" href="https://commons.wikimedia.org/wiki/Special:UploadWizard?campaign=wlm-us">Upload Wizard</a> or manually add <code>{{Wiki Loves Monuments 2026|us}}</code> to your photos. However, this form helps us better categorize images and makes your photos easier to find.</p>
         </div> -->
 
         <div class="quick-reminders">
@@ -271,7 +271,7 @@
               When in doubt, you can consult the <a
                 href="https://commons.wikimedia.org/wiki/Commons:Copyright_rules_by_territory/United_States"
                 target="_blank">Commons guide to US copyright</a> or ask at the
-                <a target="_blank" href="https://commons.wikimedia.org/wiki/Commons_talk:Wiki_Loves_Monuments_2025_in_the_United_States">event talk page</a>.
+                <a target="_blank" href="https://commons.wikimedia.org/wiki/Commons_talk:Wiki_Loves_Monuments_2026_in_the_United_States">event talk page</a>.
             </p>
           </div>
         </div>
@@ -315,16 +315,16 @@
             const selectedOption = document.getElementById("selectState");
             const selectedValue = selectedOption.options[selectedOption.selectedIndex].value;
             if (selectedValue) {
-              return 'Images_from_Wiki_Loves_Monuments_2025_in_' + selectedValue;
+              return 'Images_from_Wiki_Loves_Monuments_2026_in_' + selectedValue;
             }
           } else if (document.getElementById("location-territory").checked) {
             const selectedOption = document.getElementById("selectTerritory");
             const selectedValue = selectedOption.options[selectedOption.selectedIndex].value;
             if (selectedValue) {
-              return 'Images_from_Wiki_Loves_Monuments_2025_in_' + selectedValue;
+              return 'Images_from_Wiki_Loves_Monuments_2026_in_' + selectedValue;
             }
           } else if (document.getElementById("location-tribal").checked) {
-            return 'Images_from_Wiki_Loves_Monuments_2025_in_Native_American_nations';
+            return 'Images_from_Wiki_Loves_Monuments_2026_in_Native_American_nations';
           }
           return null;
         }
@@ -334,15 +334,15 @@
           if (subjectRadio) {
             const subjectValue = subjectRadio.value;
             const subjectMap = {
-              'building': 'Buildings_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'sculpture': 'Sculptures_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'marker': 'Markers_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'artwork': 'Artwork_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'landscape': 'Landscapes_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'cemetery': 'Cemeteries_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'transportation': 'Transportation_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'infrastructure': 'Infrastructure_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'other': 'Other_subjects_from_Wiki_Loves_Monuments_2025_in_the_United_States'
+              'building': 'Buildings_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'sculpture': 'Sculptures_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'marker': 'Markers_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'artwork': 'Artwork_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'landscape': 'Landscapes_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'cemetery': 'Cemeteries_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'transportation': 'Transportation_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'infrastructure': 'Infrastructure_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'other': 'Other_subjects_from_Wiki_Loves_Monuments_2026_in_the_United_States'
             };
             return subjectMap[subjectValue] || null;
           }
@@ -354,9 +354,9 @@
           const tagCheckboxes = document.querySelectorAll('input[name="tags"]:checked');
           tagCheckboxes.forEach(checkbox => {
             const tagMap = {
-              'UAV': 'UAV_photographs_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'Native_American_sites': 'Native_American_sites_from_Wiki_Loves_Monuments_2025_in_the_United_States',
-              'Previously_unphotographed_sites': 'Previously_unphotographed_sites_from_Wiki_Loves_Monuments_2025_in_the_United_States'
+              'UAV': 'UAV_photographs_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'Native_American_sites': 'Native_American_sites_from_Wiki_Loves_Monuments_2026_in_the_United_States',
+              'Previously_unphotographed_sites': 'Previously_unphotographed_sites_from_Wiki_Loves_Monuments_2026_in_the_United_States'
             };
             if (tagMap[checkbox.value]) {
               selectedTags.push(tagMap[checkbox.value]);
@@ -371,7 +371,7 @@
           const month = String(now.getUTCMonth() + 1).padStart(2, '0');
           const day = String(now.getUTCDate()).padStart(2, '0');
           const dateString = `${year}-${month}-${day}`;
-          return `Images_from_Wiki_Loves_Monuments_2025_in_the_United_States_uploaded_on_${dateString}`;
+          return `Images_from_Wiki_Loves_Monuments_2026_in_the_United_States_uploaded_on_${dateString}`;
         }
 
         // Check if form has valid selections
@@ -516,19 +516,19 @@
           const warnings = {
             'sculpture': `
               <p><strong>Sculptures and statues may be protected by copyright</strong>, even in public spaces.</p>
-              <p><strong>Generally safe to upload:</strong> Sculptures published before 1930, or works through 1988 that lacked proper copyright notice/renewal/registration.</p>
+              <p><strong>Generally safe to upload:</strong> Sculptures published before 1931, or works through 1988 that lacked proper copyright notice/renewal/registration.</p>
               <p><strong>Government works:</strong> Works by federal government employees may be public domain.</p>
               <p><strong>Cannot upload:</strong> Photos of more contemporary works usually cannot be uploaded unless copyright has expired (typically 70 years after artist's death).</p>
             `,
             'marker': `
               <p><strong>Historic markers may contain copyrighted text and design elements.</strong></p>
-              <p><strong>Generally safe to upload:</strong> Markers published before 1930, or markers through 1988 that lacked proper copyright notice/renewal/registration.</p>
+              <p><strong>Generally safe to upload:</strong> Markers published before 1931, or markers through 1988 that lacked proper copyright notice/renewal/registration.</p>
               <p><strong>Government works:</strong> Works by federal government employees may be public domain.</p>
               <p><strong>Cannot upload:</strong> Photos of more contemporary markers usually cannot be uploaded unless copyright has expired.</p>
             `,
             'artwork': `
               <p><strong>Murals and artistic works are generally protected by copyright.</strong></p>
-              <p><strong>Generally safe to upload:</strong> Works published before 1930, or works through 1988 that lacked proper copyright notice/renewal/registration.</p>
+              <p><strong>Generally safe to upload:</strong> Works published before 1931, or works through 1988 that lacked proper copyright notice/renewal/registration.</p>
               <p><strong>Government works:</strong> Works by federal government employees may be public domain.</p>
               <p><strong>Cannot upload:</strong> Photos of more contemporary works usually cannot be uploaded unless copyright has expired (typically 70 years after artist's death).</p>
             `
@@ -637,10 +637,10 @@
 
   <footer class="center-text">
     <p>Portal maintained by <a href="https://commons.wikimedia.org/wiki/User:Kevin_Payravi">Kevin Payravi</a> for <a
-        href="https://commons.wikimedia.org/wiki/Commons:Wiki_Loves_Monuments_2025_in_the_United_States">Wiki Loves
+        href="https://commons.wikimedia.org/wiki/Commons:Wiki_Loves_Monuments_2026_in_the_United_States">Wiki Loves
         Monuments in the U.S.</a> (<a href="https://gitlab.wikimedia.org/kevinpayravi/wlm-us/">Source Code</a>)</p>
     <p>Please report issues to the <a
-        href="https://commons.wikimedia.org/wiki/Commons_talk:Wiki_Loves_Monuments_2025_in_the_United_States">WLM-US
+        href="https://commons.wikimedia.org/wiki/Commons_talk:Wiki_Loves_Monuments_2026_in_the_United_States">WLM-US
         talk page</a></p>
   </footer>
 </body>
