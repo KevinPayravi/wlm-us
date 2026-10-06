@@ -192,7 +192,7 @@
         </div>
         <div id="tribeSelect" class="dropdown-section">
           <label class="form-label" for="selectTribe">Enter the Native American nation name:</label>
-          <input type="text" id="selectTribe" name="selectTribe" list="nationList" autocomplete="off"
+          <input type="text" id="selectTribe" name="selectTribe" list="nationList"
             placeholder="e.g., Cherokee Nation">
           <datalist id="nationList"></datalist>
           <p class="tribe-note">
@@ -221,9 +221,17 @@
           </label>
         </div>
 
-        <p class="nrhp-note">
-          <em>If yes, you'll be asked for the NRHP reference number on the next page.</em>
-        </p>
+        <div id="nrhpRefSection" class="dropdown-section">
+          <label class="form-label" for="nrhpRef">NRHP reference number:</label>
+          <input type="text" id="nrhpRef" name="nrhpRef" inputmode="numeric"
+            placeholder="e.g., 66000001">
+          <p id="nrhpRefWarning" class="field-warning" hidden>This doesn't look like an NRHP reference number.
+            They are 8 or 9 digits. <a href="https://npgallery.nps.gov/nrhp" target="_blank">Search the NRHP
+            database →</a></p>
+          <p class="nrhp-note">
+            <em>The 8-digit number on the site's NRHP listing. Leave it blank if you don't know it.</em>
+          </p>
+        </div>
       </div>
 
       <div class="form-section">
@@ -399,8 +407,21 @@
             return 'Select a territory or district to enable the upload button.';
           }
 
-          // For tribal and other, they're always valid once selected
           return null;
+        }
+
+        function getNrhpRef() {
+          return document.getElementById("nrhpRef").value.trim();
+        }
+
+        function checkNrhpRef() {
+          const ref = getNrhpRef();
+          const looksValid = ref === '' || /^\d{8,9}$/.test(ref);
+          document.getElementById("nrhpRefWarning").hidden = looksValid;
+        }
+
+        function showNrhpRef(show) {
+          document.getElementById("nrhpRefSection").style.display = show ? "block" : "none";
         }
 
         // Update upload button state
@@ -486,6 +507,8 @@
             else if (value === 'territory') showTerritories();
             else if (value === 'tribal') showTribes();
             else if (value === 'other') showOther();
+          } else if (groupName === 'nrhp') {
+            showNrhpRef(radioInput.value === 'yes');
           } else if (groupName === 'subject') {
             const value = radioInput.value;
             showCopyrightWarning(value);
@@ -506,6 +529,7 @@
           document.getElementById('selectState').addEventListener('change', updateCategories);
           document.getElementById('selectTerritory').addEventListener('change', updateCategories);
           document.getElementById('selectTribe').addEventListener('input', updateCategories);
+          document.getElementById('nrhpRef').addEventListener('input', checkNrhpRef);
 
           const nationList = document.getElementById('nationList');
           NATIONS.forEach(name => {
@@ -529,6 +553,9 @@
             else if (location.value === 'tribal') showTribes();
             else if (location.value === 'other') showOther();
           }
+
+          showNrhpRef(document.getElementById("nrhp-yes").checked);
+          checkNrhpRef();
 
           const subject = document.querySelector('input[name="subject"]:checked');
           if (subject) {
@@ -655,9 +682,14 @@
           // Determine campaign and description based on location and NRHP status
           let campaign = 'wlm-us-other';
           let description = '';
+          let nrhpId = '';
 
           if (document.getElementById("nrhp-yes").checked) {
             campaign = 'wlm-us';
+            // Prefills campaign NRHP reference number field
+            if (getNrhpRef()) {
+              nrhpId = '&id=' + encodeURIComponent(getNrhpRef());
+            }
           }
 
           // Handle tribal nation description
@@ -671,7 +703,7 @@
           // Build final URL
           const baseUrl = 'https://commons.wikimedia.org/w/index.php?title=Special:UploadWizard&campaign=' + campaign;
           const categoriesParam = categoriesString ? '&categories=' + categoriesString : '';
-          const finalUrl = baseUrl + description + categoriesParam;
+          const finalUrl = baseUrl + nrhpId + description + categoriesParam;
 
           console.log('Redirecting to:', finalUrl);
           window.location.href = finalUrl;

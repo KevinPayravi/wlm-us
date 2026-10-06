@@ -11,6 +11,7 @@
   --color-notice-surface: #eaf3ff;
   --color-warning-border: #ac6600;
   --color-warning-surface: #fef6e7;
+  --color-warning-text: #8a5100;
   --color-success: #14662f;
   --radius: 2px;
 }
@@ -209,6 +210,12 @@ input[type="text"] {
   margin-top: 24px;
 }
 
+.field-warning {
+  font-size: 0.875em;
+  color: var(--color-warning-text);
+  margin: 8px 0 0 0;
+}
+
 .proceed-note {
   color: var(--color-success);
   font-weight: bold;
@@ -339,6 +346,7 @@ input[type="text"] {
 #territorySelect,
 #tribeSelect,
 #otherSelect,
+#nrhpRefSection,
 #uploadButton {
   display: none;
 }
